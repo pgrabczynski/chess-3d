@@ -1,0 +1,4 @@
+com.patryk.test.android-androidTest-0 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\generated\res\resValues\androidTest\debug
+com.patryk.test.android-mergeDebugAndroidTestResources-1 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.patryk.test.android-mergeDebugAndroidTestResources-2 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.patryk.test.android-debugAndroidTest-3 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

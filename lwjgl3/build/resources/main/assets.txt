@@ -1,0 +1,39 @@
+Black_Bishop_C8.obj
+figures/g3db/Bishop c1.g3db
+figures/g3db/Bishop c8.g3db
+figures/g3db/Bishop f1.g3db
+figures/g3db/Bishop f8.g3db
+figures/g3db/Black Squares.g3db
+figures/g3db/King e1.g3db
+figures/g3db/King e8.g3db
+figures/g3db/Knight b1.g3db
+figures/g3db/Knight b8.g3db
+figures/g3db/Knight g1.g3db
+figures/g3db/Knight g8.g3db
+figures/g3db/Pawn a2.g3db
+figures/g3db/Pawn a7.g3db
+figures/g3db/Pawn b2.g3db
+figures/g3db/Pawn b7.g3db
+figures/g3db/Pawn c2.g3db
+figures/g3db/Pawn c7.g3db
+figures/g3db/Pawn d2.g3db
+figures/g3db/Pawn d7.g3db
+figures/g3db/Pawn e2.g3db
+figures/g3db/Pawn e7.g3db
+figures/g3db/Pawn f2.g3db
+figures/g3db/Pawn f7.g3db
+figures/g3db/Pawn g2.g3db
+figures/g3db/Pawn g7.g3db
+figures/g3db/Pawn h2.g3db
+figures/g3db/Pawn h7.g3db
+figures/g3db/Queen d1.g3db
+figures/g3db/Queen d8.g3db
+figures/g3db/Rook a1.g3db
+figures/g3db/Rook a8.g3db
+figures/g3db/Rook h1.g3db
+figures/g3db/Rook h8.g3db
+figures/g3db/chessboard/Bottom.g3db
+figures/g3db/chessboard/Inner Frame.g3db
+figures/g3db/chessboard/Outer Frame.g3db
+figures/g3db/chessboard/White Squares.g3db
+libgdx.png

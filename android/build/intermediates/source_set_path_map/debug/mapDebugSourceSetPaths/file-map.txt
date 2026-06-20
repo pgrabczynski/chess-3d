@@ -1,0 +1,15 @@
+com.patryk.android-core-runtime-2.2.0-0 C:\Users\Legion\.gradle\caches\8.14.5\transforms\0e2a38a1eaece7116bdc7de542c8353d\transformed\core-runtime-2.2.0\res
+com.patryk.android-startup-runtime-1.1.1-1 C:\Users\Legion\.gradle\caches\8.14.5\transforms\1afa59297bd88d352d81c59b8019cd80\transformed\startup-runtime-1.1.1\res
+com.patryk.android-annotation-experimental-1.4.1-2 C:\Users\Legion\.gradle\caches\8.14.5\transforms\474cc401ae3be77c88f076ee541c5908\transformed\annotation-experimental-1.4.1\res
+com.patryk.android-profileinstaller-1.3.0-3 C:\Users\Legion\.gradle\caches\8.14.5\transforms\8a951296c0a4c3fa56a67798ca67b363\transformed\profileinstaller-1.3.0\res
+com.patryk.android-gdx-backend-android-1.14.0-4 C:\Users\Legion\.gradle\caches\8.14.5\transforms\8ec92ebef09c06d04ba197349a744dc2\transformed\gdx-backend-android-1.14.0\res
+com.patryk.android-core-1.15.0-5 C:\Users\Legion\.gradle\caches\8.14.5\transforms\a77102ea04c7050c010b62a183029472\transformed\core-1.15.0\res
+com.patryk.android-tracing-1.2.0-6 C:\Users\Legion\.gradle\caches\8.14.5\transforms\aae3d60188c68217ddf0ef8199965b24\transformed\tracing-1.2.0\res
+com.patryk.android-lifecycle-runtime-2.6.2-7 C:\Users\Legion\.gradle\caches\8.14.5\transforms\e89e923c5a5e2b13ed8c2be36e3ed03f\transformed\lifecycle-runtime-2.6.2\res
+com.patryk.android-pngs-8 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\generated\res\pngs\debug
+com.patryk.android-resValues-9 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\generated\res\resValues\debug
+com.patryk.android-packageDebugResources-10 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.patryk.android-packageDebugResources-11 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.patryk.android-debug-12 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\build\intermediates\merged_res\debug\mergeDebugResources
+com.patryk.android-android-13 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\res
+com.patryk.android-debug-14 C:\Users\Legion\Desktop\PROGRAMOWANIE\chess\android\src\debug\res

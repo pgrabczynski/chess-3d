@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FFFFFFFF</color>
+    <color name="ic_background_color">#F5A623FF</color>
+    <string name="app_name">Chess3d</string>
+    <style name="GdxTheme" parent="android:Theme.Material.Light.NoActionBar.Fullscreen">
+        <item name="android:colorBackground">@color/background</item>
+    </style>
+</resources>
