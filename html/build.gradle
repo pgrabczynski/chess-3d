@@ -1,0 +1,164 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'org.gretty:gretty:5.0.2'
+    classpath "org.docstr:gwt-gradle-plugin:$gwtPluginVersion"
+  }
+}
+
+apply plugin: "gwt"
+apply plugin: "war"
+apply plugin: "org.gretty"
+
+// Główna konfiguracja Javy za pomocą nowoczesnego Toolchaina
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(11)
+  }
+}
+
+sourceSets.main.java.srcDirs = [ "src/main/java/" ]
+eclipse.project.name = appName + "-html"
+
+gwt {
+  gwtVersion = "$gwtFrameworkVersion"
+  maxHeapSize = '1G' // GWT potrzebuje dużo pamięci
+  minHeapSize = '1G'
+
+  // Pobieramy ścieżki źródłowe
+  src = files(file('src/main/java'), project(":core").file('src/main/java'))
+  modules += ["com.patryk.GdxDefinition"]
+  devModules += ["com.patryk.GdxDefinitionSuperdev"]
+  project.webAppDirName = "webapp"
+
+  compiler.strict = true
+  compiler.disableCastChecking = true
+
+  // Usunięto problematyczne sourceLevel = 1.17 – Toolchain zajmie się kompatybilnością
+}
+
+dependencies {
+  implementation "com.badlogicgames.gdx:gdx:$gdxVersion:sources"
+  implementation "com.github.tommyettinger:gdx-backend-gwt:1.1210.1"
+  implementation "com.github.tommyettinger:gdx-backend-gwt:1.1210.1:sources"
+  implementation "com.google.jsinterop:jsinterop-annotations:2.1.0:sources"
+  implementation project(':core')
+}
+
+import org.akhikhl.gretty.AppBeforeIntegrationTestTask
+import org.docstr.gradle.plugins.gwt.GwtSuperDev
+
+gretty.httpPort = 8080
+// Bezpieczniejszy i czystszy sposób na wskazanie folderu build
+gretty.resourceBase = layout.buildDirectory.dir("gwt/draftOut").get().asFile.absolutePath
+gretty.contextPath = "/"
+gretty.portPropertiesFileName = "TEMP_PORTS.properties"
+
+tasks.register('startHttpServer') {
+  dependsOn("draftCompileGwt")
+  doFirst {
+    copy {
+      from "webapp"
+      into gretty.resourceBase
+    }
+    copy {
+      from "war"
+      into gretty.resourceBase
+    }
+  }
+}
+
+tasks.register('beforeRun', AppBeforeIntegrationTestTask) {
+  dependsOn("startHttpServer")
+  gretty {
+    integrationTestTask("superDev")
+  }
+  // Bezpieczne usuwanie pliku tymczasowego
+  doFirst {
+    file("build/TEMP_PORTS.properties").delete()
+  }
+  interactive = false
+}
+
+tasks.register('superDev', GwtSuperDev) {
+  group("gwt")
+  dependsOn("beforeRun")
+  doFirst {
+    gwt.modules = gwt.devModules
+  }
+}
+
+clean.delete += [file("war")]
+
+var outputPath = "build/dist/"
+
+tasks.register('dist') {
+  dependsOn(["clean", "compileGwt"])
+  doLast {
+    file(outputPath).mkdirs()
+    copy {
+      from("build/gwt/out") {
+        exclude '**/*.symbolMap'
+      }
+      into outputPath
+    }
+    copy {
+      from("webapp") {
+        exclude 'index.html'
+        exclude 'refresh.png'
+      }
+      into outputPath
+    }
+    copy {
+      from("webapp") {
+        include 'index.html'
+        filter { String line -> line.replaceAll('<a class="superdev" .+', '') }
+      }
+      into outputPath
+    }
+    copy {
+      from "war"
+      into outputPath
+    }
+  }
+}
+
+tasks.register('addSource') {
+  doLast {
+    sourceSets.main.compileClasspath += files(project(':core').sourceSets.main.allJava.srcDirs)
+    sourceSets.main.compileClasspath += files("../core/build/generated/sources/annotationProcessor/java/main")
+    sourceSets.main.compileClasspath += files(sourceSets.main.output.resourcesDir)
+  }
+}
+
+tasks.register("distZip", Zip) {
+  dependsOn("dist")
+  from(outputPath)
+  archiveVersion = projectVersion
+  archiveBaseName.set("${appName}-dist")
+  destinationDirectory.set(layout.buildDirectory)
+}
+
+tasks.compileGwt.dependsOn("addSource")
+tasks.draftCompileGwt.dependsOn("addSource")
+tasks.checkGwt.dependsOn("addSource")
+
+// 1. Bezpieczne wymuszenie Javy 11 dla zadań kompilatora GWT (tylko jeśli zadanie wspiera javaLauncher)
+tasks.matching { it.name.toLowerCase().contains("gwt") }.configureEach { task ->
+  if (task.hasProperty('javaLauncher')) {
+    task.javaLauncher = javaToolchains.launcherFor {
+      languageVersion = JavaLanguageVersion.of(11)
+    }
+  }
+}
+
+// 2. Bezpieczne wymuszenie Javy 11 dla procesów uruchomieniowych Gretty / Jetty
+tasks.matching { it.name.startsWith("appRun") || it.name.startsWith("jetty") }.configureEach { task ->
+  if (task.hasProperty('javaLauncher')) {
+    task.javaLauncher = javaToolchains.launcherFor {
+      languageVersion = JavaLanguageVersion.of(11)
+    }
+  }
+}
